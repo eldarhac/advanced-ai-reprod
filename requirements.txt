@@ -1,0 +1,2 @@
+torch==1.10.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+transformers==2.11.0
