@@ -21,6 +21,7 @@ from transformers import (
 
 from torch.utils.data.dataset import Dataset
 
+from models import LineByLineTextDatasetSymtime
 
 logger = logging.getLogger(__name__)
 
@@ -174,6 +175,17 @@ def get_dataset(args: DataTrainingArguments, tokenizer: PreTrainedTokenizer, eva
     file_path = args.eval_data_file if evaluate else args.train_data_file
     if args.line_by_line:
         ret = LineByLineTextDataset(tokenizer=tokenizer, file_path=file_path)
+        print("DATA SIZE: ")
+        print(len(ret))
+        return ret
+    else:
+        return None
+
+
+def get_dataset_symtime(args: DataTrainingArguments, tokenizer: PreTrainedTokenizer, evaluate=False):
+    file_path = args.eval_data_file if evaluate else args.train_data_file
+    if args.line_by_line:
+        ret = LineByLineTextDatasetSymtime(tokenizer=tokenizer, file_path=file_path)
         print("DATA SIZE: ")
         print(len(ret))
         return ret

@@ -5,7 +5,7 @@ import torch
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from training_args import parse_args_from_dict, get_dataset
+from training_args import parse_args_from_dict, get_dataset, get_dataset_symtime
 from models import DoNothingDataCollator, T5ForConditionalGenerationCustom, DoNothingDataCollatorSymtime
 
 from transformers import (
@@ -239,8 +239,8 @@ def train_and_eval_symtime(params):
 
     # Get datasets
 
-    train_dataset = get_dataset(data_args, tokenizer=tokenizer) if training_args.do_train else None
-    eval_dataset = get_dataset(data_args, tokenizer=tokenizer, evaluate=True) if training_args.do_eval else None
+    train_dataset = get_dataset_symtime(data_args, tokenizer=tokenizer) if training_args.do_train else None
+    eval_dataset = get_dataset_symtime(data_args, tokenizer=tokenizer, evaluate=True) if training_args.do_eval else None
     data_collator = DoNothingDataCollatorSymtime()
 
     # Initialize our Trainer
