@@ -61,6 +61,8 @@ class ModelArguments:
     cache_dir: Optional[str] = field(
         default=None, metadata={"help": "Where do you want to store the pretrained models downloaded from s3"}
     )
+    eval_model_path: Optional[str] = field(default=None, metadata={"help": "Path to model for evaluation"})
+
 
 @dataclass
 class TrainingArguments:
