@@ -1,5 +1,5 @@
 from config import config_dict
-from evaluation import evaluate_tracie_style
+from evaluation import evaluate_tracie_style, evaluate_symbolic
 from train_model import run_and_eval
 
 
@@ -17,7 +17,7 @@ run_and_eval(**config_dict['iid']['symtime'], per_gpu_train_batch_size=4,
                  per_device_train_batch_size=4, gradient_accumulation_steps=2,
                  per_device_eval_batch_size=4, per_gpu_eval_batch_size=4)
 print('evaluating iid symtime:')
-evaluate_tracie_style(config_dict['iid']['symtime']['eval_data_file'], config_dict['iid']['symtime']['output_dir'])
+evaluate_symbolic(config_dict['iid']['symtime']['eval_data_file'], config_dict['iid']['symtime']['output_dir'])
 print('='*50)
 
 run_and_eval(**config_dict['uniform']['base_model'])
@@ -34,7 +34,7 @@ run_and_eval(**config_dict['uniform']['symtime'], per_gpu_train_batch_size=4,
                     per_device_train_batch_size=4, gradient_accumulation_steps=2,
                     per_device_eval_batch_size=4, per_gpu_eval_batch_size=4)
 print('evaluating uniform symtime:')
-evaluate_tracie_style(config_dict['uniform']['symtime']['eval_data_file'], config_dict['uniform']['symtime']['output_dir'])
+evaluate_symbolic(config_dict['uniform']['symtime']['eval_data_file'], config_dict['uniform']['symtime']['output_dir'])
 print('='*50)
 
 run_and_eval(**config_dict['matres']['base_model'])
