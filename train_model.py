@@ -276,7 +276,7 @@ def train_and_eval_symtime(params):
             model = T5ForConditionalGenerationCustom.from_pretrained(training_args.output_dir).cuda()
         model.eval()
         sampler = SequentialSampler(eval_dataset)
-        data_collator = DoNothingDataCollator()
+        data_collator = DoNothingDataCollatorSymtime()
         data_loader = DataLoader(
             eval_dataset,
             sampler=sampler,
