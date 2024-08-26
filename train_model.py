@@ -309,14 +309,15 @@ def run_and_eval(model_name_or_path: str, output_dir: str, train_data_file: str,
                  eval_data_file: str, per_gpu_train_batch_size: int = 4,
                  per_device_train_batch_size: int = 4, gradient_accumulation_steps: int = 4,
                  per_device_eval_batch_size: int = 4, per_gpu_eval_batch_size: int = 4,
-                 save_steps: int = 10000, duration_model_path: str = None):
+                 save_steps: int = 10000, duration_model_path: str = None,
+                 do_train=True, eval_model_path=None):
     params = {
       "model_type": "t5",
       "tokenizer_name": "t5-large",
       "model_name_or_path": model_name_or_path,
       "duration_model_path": duration_model_path,
       "output_dir": output_dir,
-      "do_train": True,
+      "do_train": do_train,
       "do_eval": True,
       "num_train_epochs": 50,
       "train_data_file": train_data_file,
@@ -331,6 +332,7 @@ def run_and_eval(model_name_or_path: str, output_dir: str, train_data_file: str,
       "logging_steps": 100,
       "overwrite_output_dir": True,
       "seed": 10,
+      "eval_model_path": eval_model_path
     }
 
     if 'symtime' in model_name_or_path:

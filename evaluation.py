@@ -1,4 +1,4 @@
-def evaluate_tracie_style(test_path: str, result_path: str):
+def evaluate_tracie_style(test_path: str, result_path: str, end:bool=True):
     glines = [x.strip() for x in open(test_path).readlines()]
     plines = [x.strip() for x in open(f"{result_path}/eval_results_lm.txt").readlines()]
     assert len(glines) == len(plines)
@@ -43,13 +43,11 @@ def evaluate_tracie_style(test_path: str, result_path: str):
             s_correct += 1
     print("Overall Acc: {}".format(str(float(correct) / float(total))))
     print("Start Acc: {}".format(str(float(correct_start) / float(total_start))))
-    print("End Acc: {}".format(str(float(correct_end) / float(total_end))))
+    if end:
+      print("End Acc: {}".format(str(float(correct_end) / float(total_end))))
     print("Story Acc: {}".format(str(float(s_correct) / float(s_total))))
 
-    return float(correct_start) / float(total_start), float(correct_end) / float(total_end), float(s_correct) / float(s_total)
-
-
-def evaluate_symbolic(test_path: str, result_path: str):
+def evaluate_symbolic(test_path: str, result_path: str, end:bool=True):
     glines = [x.strip() for x in open(test_path).readlines()]
     plines = [x.strip() for x in open(f"{result_path}/eval_results_lm.txt").readlines()]
     assert len(glines) == len(plines)
@@ -68,8 +66,10 @@ def evaluate_symbolic(test_path: str, result_path: str):
         p = plines[i].split("\t")
         if "starts before" in l.split("\t")[0] or "starts after" in l.split("\t")[0]:
             total_start += 1
+            total += 1
             if label == p[0]:
                 correct_start += 1
+                correct += 1
                 story_prediction_map[story].append(True)
             else:
                 story_prediction_map[story].append(False)
@@ -81,18 +81,22 @@ def evaluate_symbolic(test_path: str, result_path: str):
             if label != "positive":
                 continue
             total_end += 1
+            total += 1
             label = "before"
             if "ends after" in l.split("\t")[0]:
                 label = "after"
             if label == pl:
                 correct_end += 1
+                correct += 1
                 story_prediction_map[story].append(True)
             else:
                 story_prediction_map[story].append(False)
 
     # print("Overall Acc: {}".format(str(float(correct) / float(total))))
     print("Start Acc: {}".format(str(float(correct_start) / float(total_start))))
-    print("End Acc: {}".format(str(float(correct_end) / float(total_end))))
+    if end:
+      print("End Acc: {}".format(str(float(correct_end) / float(total_end))))
+    print("Overall Acc: {}".format(str(float(correct) / float(total))))
 
     s_total = 0
     s_correct = 0
