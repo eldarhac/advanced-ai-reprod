@@ -17,5 +17,5 @@ See reproduction example in `reproduction_example.ipynb`
 - `models.py` - the different models (PtnTime/SymTime etc.) configurations
 - `train_model.py` - code for training and evaluating model
 - `main.py` - a main file for running all experiments
-- `reproduction_example.ipynb` - a reproduction example in a jupyter notebook.
+- `reproduction_notebook.ipynb` - a reproduction example in a jupyter notebook.
 - `/data` - a directory with all the datasets used in the reproduction
