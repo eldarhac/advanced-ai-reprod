@@ -7,7 +7,7 @@ Running prerequisites:
 - [x] 64 GB RAM
 - [x] 100 GB of free disk space
 
-See reproduction example in `reproduction_example.ipynb`
+See reproduction example in `reproduction_notebook.ipynb`
 
 
 # Files
