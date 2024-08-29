@@ -1,3 +1,10 @@
+Submitted as a final project for Advanced AI Course, 8489950-01 by Prof. Sarit Kraus, Dept. of CS, BIU 2024.
+
+Created By:
+
+Itamar Hadad, ID: 308426964
+Eldar Hacohen, ID: 311587661
+
 Running prerequisites:
 
 - [x] Python 3.8
